@@ -6,7 +6,8 @@
             //get input
             var entry = document.getElementById("guess").value;
             //entry = entry.replace(/\s/g, '');
-            console.log(shotType);
+            
+
 
             //strip entry of 'shot' or 'angle'
             lowerEntry = entry.toLowerCase();
@@ -15,6 +16,12 @@
             }
             if(lowerEntry.includes("angle")){
                 entry = entry.replace(" angle", '');
+            }
+
+            if(answer == "extreme close up"){
+                if(entry == "ecu"){
+                    entry = "extreme close up";
+                }
             }
 
             //const answer = Object.keys(shots)[shotType];
