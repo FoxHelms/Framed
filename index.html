@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <script src="variables.js"></script>
+    <script>
+        function myFunction(){
+            const entry = document.getElementById("guess").value;
+            const shotType = 0;
+            const answer = Object.keys(shots)[shotType];
+            guesses ++;
+            for (let i = 1; i < guesses+2; i++) {
+                document.getElementById("img" + i).style="display: ''";
+            }
+            if(entry == answer){
+                alert(entry + " is correct");
+            }
+            else{
+                imgInd++;
+            }
+            if(shotType == 0){
+                fileName = "wideshot";
+            }
+            else if(shotType == 1){
+                fileName = "medshot";
+            }
+            document.getElementById("image").src=fileName + imgInd + ".jpg";
+            //document.getElementById("img1").style="display: ''";
+            //console.log(fileName + imgInd + ".jpg");
+            console.log(guesses);
+            return false;
+
+        }
+    </script>
+    <body>
+        <img id="image"/>
+        <h1>Name That Shot</h1>
+
+        <button id="img1" style="display: none" onclick="document.getElementById('image').src=fileName + 1 + '.jpg'"></button>
+        <button id="img2" style="display: none" onclick="document.getElementById('image').src=fileName + 2 + '.jpg'"></button>
+        <button id="img3" style="display: none" onclick="document.getElementById('image').src=fileName + 3 + '.jpg'"></button>
+        <button id="img4" style="display: none" onclick="document.getElementById('image').src=fileName + 4 + '.jpg'"></button>
+
+        <form onsubmit="return myFunction();">
+            <input type="text" placeholder="Shot Type" id="guess" autocomplete="off"/>
+            <input type="submit" value="guess" />
+        </form>
+
+        
+
+        <script>
+            document.getElementById("image").src="wideshot" + imgInd + ".jpg";
+        </script>
+
+    </body>
+
+</html>
+
