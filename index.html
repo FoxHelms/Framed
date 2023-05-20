@@ -2,6 +2,21 @@
 <html>
     <script src="variables.js"></script>
     <script>
+
+        function getRandomIntInclusive(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            shotType = Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+            answer = Object.keys(shots)[shotType];
+            fileName = JSON.stringify(answer).replace(/\s/g, '').replace(/['"]+/g, '');
+            guesses = 0;
+            imgInd = 1;
+            document.getElementById("image").src="imgs/" + fileName + imgInd + ".jpg";
+            document.getElementById("tryAgain").style="display: none";
+            //window.location.reload();
+        }
+
+
         function myFunction(){
             //get input
             var entry = document.getElementById("guess").value;
@@ -34,6 +49,10 @@
                 imgInd = 1;
                 document.getElementById("image").src="imgs/" + fileName + imgInd + ".jpg";
                 document.getElementById("tryAgain").style="display: none";
+                for (let i = 1; i < 3; i++) {
+                    document.getElementById("guess" + i).innerText='';
+                    document.getElementById("guess" + i).style="display: none";
+                }
             }
             else{
                 imgInd++;
@@ -47,6 +66,8 @@
                 for (let i = 1; i < guesses+2; i++) {
                     document.getElementById("img" + i).style="display: ''";
                     document.getElementById("tryAgain").style="display: ''";
+                    document.getElementById("guess" + guesses).innerText=entry;
+                    document.getElementById("guess" + guesses).style="display: ''";
                 }
             }
             //check if correct, otherwise go to next image
@@ -59,7 +80,7 @@
         }
     </script>
     <body>
-        <img width="640" height="480" id="image"/>
+        <img width="640" height="360" id="image"/>
         <h1>Name That Shot</h1>
 
         <button id="img1" style="display: none" onclick="document.getElementById('image').src='imgs/' + fileName + 1 + '.jpg'"></button>
@@ -70,7 +91,11 @@
         <form onsubmit="return myFunction();">
             <input type="text" placeholder="Shot Type" id="guess" autocomplete="off"/>
             <input type="submit" value="guess" />
+            <input type="button" id="cycle"value="new shot" onclick="getRandomIntInclusive(1, 7);"/>
         </form>
+
+        <p id="guess1" style="display: none"></p>
+        <p id="guess2" style="display: none"></p>
 
         
 
