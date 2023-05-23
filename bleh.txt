@@ -1,0 +1,6 @@
+so basically I have some options
+
+
+what to do for the win condition?
+I want there to be a button that changes the image and updates the page. 
+
